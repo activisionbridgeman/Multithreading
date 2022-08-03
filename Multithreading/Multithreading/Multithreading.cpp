@@ -2,10 +2,39 @@
 //
 
 #include <iostream>
+#include <thread>
+
+bool DidQuit = false;
+int ThreadVar = 0;
+
+void HelloWorldThread() 
+{
+    while (!DidQuit)
+    {
+        ThreadVar++;
+        if (ThreadVar > 1000) 
+        {
+            ThreadVar = 0;
+        }
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "hello world\n";
+    char userInput;
+    std::thread Hello(HelloWorldThread);
+
+    while (!DidQuit)
+    {
+        std::cout << "enter any key to display counter\n";
+        std::cout << "q to quit\n";
+        std::cin >> userInput;
+        DidQuit = (userInput == 'q');
+        std::cout << "ThreadVar: " << ThreadVar << '\n';
+    }
+    Hello.join();
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
