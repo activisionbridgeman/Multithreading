@@ -1,4 +1,5 @@
 // Multithreading.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Increments thread variable in thread that runs concurrently
 //
 
 #include <iostream>
@@ -7,6 +8,9 @@
 bool DidQuit = false;
 int ThreadVar = 0;
 
+/// <summary>
+/// Thread that increments ThreadVar variable
+/// </summary>
 void HelloWorldThread() 
 {
     while (!DidQuit)
